@@ -18,4 +18,4 @@ Added:
 + Basic Overlay(pre-Alpha)
 + Basic Miniplayer(pre-Alpha)
 
-Alpha 0.0.2 End Q3 2024
+Alpha 0.0.2 Comming soon
