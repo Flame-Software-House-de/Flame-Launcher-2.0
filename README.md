@@ -18,9 +18,9 @@ Added:
 + Basic Overlay(pre-Alpha)
 + Basic Miniplayer(pre-Alpha)
 
-Alpha 0.0.2 Coming soon
+#Alpha 0.0.2 Coming soon
 
-# Features Planed For the Future:
+# Features Planed For the Future (Not in Alpha 0.0.2):
 
 - Cloud-Storage for SaveGames
 - Family Funktions (Screen Time & Profiles & Agerestrictions)
