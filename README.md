@@ -8,6 +8,9 @@ I have developed this Launcher as option for all that don´t want 2 or more Game
 # Setup:
 https://github.com/Flame-Software-House-de/Flame-Launcher-2.0/blob/Alpha/Flame%20Launcher%202.0%20Setup.exe
 
+# Discord:
+https://discord.gg/YKf4dazzJp
+
 # Alpha 0.0.1 
 Added:
 + Basic Steam Support
