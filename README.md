@@ -21,7 +21,18 @@ Added:
 + Basic Miniplayer(pre-Alpha)
 
 # Alpha 0.0.2
+Added:
++ Epicgames Support
++ Servermanager(Only Minecraft Paper 1.20.1-1.21.1)
++ Startup Window
++ Optionsmenu
++ Steam Friendlist with Status
++ Performece Optimized
++ Performece Counter
++ Facelift
 
+Out of pre Alpha:
++ Miniplayer
 
 # Features Planed For the Future (Not in Alpha 0.0.2):
 
