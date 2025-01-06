@@ -10,16 +10,6 @@ https://github.com/Flame-Software-House-de/Flame-Launcher-2.0/blob/Alpha/Flame%2
 # Discord:
 https://discord.gg/YKf4dazzJp
 
-# Alpha 0.0.1 
-Added:
-+ Basic Steam Support
-+ Spotify Intigration
-+ Single addition of Games and Apps
-+ Basic Web Integration
-+ Basic Audioplayer(pre-Alpha)
-+ Basic Overlay(pre-Alpha)
-+ Basic Miniplayer(pre-Alpha)
-
 # Alpha 0.0.2
 Added:
 + Epicgames Support
