@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FlameLauncher 2.0 Downloader/1.0.0": {
+        "runtime": {
+          "FlameLauncher 2.0 Downloader.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FlameLauncher 2.0 Downloader/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

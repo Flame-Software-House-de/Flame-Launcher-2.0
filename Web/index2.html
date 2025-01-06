@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlameLauncher2.0</title>
+    <style>
+        #canvas2{
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        background-color: #222222;
+        }
+        #Überschrift {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 30px;
+        color: rgb(255, 128, 0);
+        }
+        #buttons{
+            position: relative;
+            top: 50px;
+            left: 0px;
+            display: inline-block;
+        }
+        #buttons:hover{
+            color: rgb(255, 128, 0);
+            background-color: black;
+        }
+
+        #copyright{
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            font-size: 24px;
+            color: rgb(255, 128, 0);
+        }
+        #loading{
+            position: absolute;
+            top: 0px;
+            left: 725px;
+            font-size: 24px;
+            color: rgb(255, 128, 0);
+        }
+        .buttonss{
+            color: rgb(255, 128, 0);
+            background-color: black;
+        }
+        .buttonss:hover{
+            background-color: #6b6b6b;
+        }
+        .player {
+            color: rgb(255, 128, 0);
+            grid-area: player;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background: #1e1e1e;
+            border-radius: 10px;
+            width: 20%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .player img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .info h2, .info h3 {
+            margin: 0;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .progress-bar {
+            height: 5px;
+            background: #555;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            margin: 5px 0;
+            width: 100%;
+        }
+        .progress {
+            height: 100%;
+            background: #1db954;
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        .time-info {
+            font-size: 12px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body onload="fetchButtons" style="background-color: black;">
+        <canvas id="canvas2" height="5"></canvas>
+        <div id="Überschrift">Flame Launcher 2.0</div>
+        <div id= "loading">Loading Buttons...</div>
+        <div id="buttons"></div>
+        <footer>
+            <div class="player">
+                <img id="track-image" src="" alt="Track Image">
+                <div class="info">
+                    <h2 id="track-name">Track Name</h2>
+                    <h3 id="artist-name">Artist Name</h3>
+                    <div class="progress-bar">
+                        <div id="progress" class="progress"></div>
+                    </div>
+                    <p class="time-info" id="time-info">0:00 / 0:00</p>
+                </div>
+            </div>
+            <div id="copyright">©2024 Flame Launcher</div>
+        </footer>
+
+
+    <script>
+            async function fetchButtons() {
+                const response = await fetch('/buttons');
+                const buttons = await response.json();
+                const buttonsContainer = document.getElementById('buttons');
+                document.getElementById('loading').innerText = "";
+                buttons.forEach(button => {
+                    const btn = document.createElement('button');
+                    btn.className = "buttonss"
+                    btn.textContent = button.Name;
+                    btn.style.display = "inline-block";
+                    btn.style.border = "none";
+                    btn.style.padding = "10px 24px";
+                    btn.onclick = () => {
+                        fetch('/api/button-click', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ Name: button.Name, Path: button.Path })
+                        });
+                    };
+                    buttonsContainer.appendChild(btn);
+                });
+            }
+            async function loadPlayer() {
+                try {
+                    const response = await fetch(`${window.location.origin}/player`);
+                    const data = await response.json();
+
+                    // Update player UI
+                    document.getElementById('track-name').textContent = data.track;
+                    document.getElementById('artist-name').textContent = data.artist;
+                    document.getElementById('track-image').src = data.image_url;
+
+                    const totalSeconds = data.duration_min * 60 + data.duration_sec;
+                    const currentSeconds = data.progress_min * 60 + data.progress_sec;
+
+                    document.getElementById('time-info').textContent = 
+                        `${data.progress_min}:${data.progress_sec.toString().padStart(2, '0')} / ${data.duration_min}:${data.duration_sec.toString().padStart(2, '0')}`;
+
+                    // Update progress bar
+                    const progressPercent = (currentSeconds / totalSeconds) * 100;
+                    document.getElementById('progress').style.width = `${progressPercent}%`;
+                } catch (error) {
+                    console.error('Error loading player data:', error);
+                }
+            }
+            setInterval(loadPlayer, 1000);
+        setInterval(fetchButtons(), 60000);
+    </script>
+</body>
+
+</html>
